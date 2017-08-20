@@ -2,7 +2,7 @@ Deliverables:
 
 You will be building out a Yelp-like web application. 
 
-A customer registers for our app with an email and password.
+A customer registers for our app with an email (OPTIONAL: and password).
 A customer has a name.
 A customer has many reviews.
 A customer has many restaurants through reviews.
@@ -20,3 +20,21 @@ A restaurant has many reviews.
 A restaurant has many customers through reviews.
 A restaurant can be created without any reviews.
 A restaurant's index page displays all of it's reviews.
+
+
+WHAT WE NEED:
+
+touch app/controllers/home_controller.rb
+	define #welcome
+
+mkdir app/views/home
+touch app/views/home/welcome.html.erb
+
+rails g model Review customer_id:integer restaurant_id:integer
+	belongs_to :restaurant, belongs to :customer
+
+rails g model Customer name:string email:string
+	has_many :reviews, has_many :restaurants, through: :reviews
+
+rails g model Restaurant name:string
+	has_many :reviews, has_many :customers, through: :reviews
